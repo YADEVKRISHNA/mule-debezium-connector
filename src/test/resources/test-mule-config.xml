@@ -1,0 +1,19 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:mule-debezium="http://www.mulesoft.org/schema/mule/mule-debezium"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+          http://www.mulesoft.org/schema/mule/mule-debezium http://www.mulesoft.org/schema/mule/mule-debezium/current/mule-mule-debezium.xsd">
+
+    <mule-debezium:config name="config" configId="configId">
+        <mule-debezium:connection requiredParameter="aValue" />
+    </mule-debezium:config>
+
+    <flow name="sayHiFlow">
+        <mule-debezium:say-hi person="Mariano Gonzalez"/>
+    </flow>
+
+    <flow name="retrieveInfoFlow">
+        <mule-debezium:retrieve-info config-ref="config"/>
+    </flow>
+
+</mule>
