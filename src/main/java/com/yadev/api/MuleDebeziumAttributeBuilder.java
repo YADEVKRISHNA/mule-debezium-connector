@@ -1,6 +1,5 @@
 package com.yadev.api;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,69 +7,70 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MuleDebeziumAttributeBuilder {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MuleDebeziumAttributeBuilder.class);
-    public static DebeziumEventAttributes BuildDebeziumAttributes(String event) throws JsonProcessingException {
-        DebeziumEventAttributes debeziumEventAttributes = new DebeziumEventAttributes();
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode rootNode = objectMapper.readTree(event);
-        String version = rootNode.path("payload").path("source").path("version").toString();
-        String connector = rootNode.path("payload").path("source").path("connector").toString();
-        String name = rootNode.path("payload").path("source").path("name").toString();
-        String ts_ms = rootNode.path("payload").path("source").path("ts_ms").toString();
-        String snapshot = rootNode.path("payload").path("source").path("snapshot").toString();
-        String db = rootNode.path("payload").path("source").path("db").toString();
-        String sequence = rootNode.path("payload").path("source").path("sequence").toString();
-        String table = rootNode.path("payload").path("source").path("table").toString();
-        String server_id = rootNode.path("payload").path("source").path("server_id").toString();
-        String file = rootNode.path("payload").path("source").path("file").toString();
-        String pos = rootNode.path("payload").path("source").path("pos").toString();
-        String row = rootNode.path("payload").path("source").path("row").toString();
-        String thread = rootNode.path("payload").path("source").path("thread").toString();
-        String op = rootNode.path("payload").path("op").toString();
-        String transaction = rootNode.path("payload").path("transaction").toString();
-        debeziumEventAttributes.setVersion(version);
+	private static final Logger LOGGER = LoggerFactory.getLogger(MuleDebeziumAttributeBuilder.class);
 
-        debeziumEventAttributes.setConnector(connector);
-        LOGGER.info("Setting connector " + connector);
+	public static DebeziumEventAttributes BuildDebeziumAttributes(String event) throws JsonProcessingException {
+		DebeziumEventAttributes debeziumEventAttributes = new DebeziumEventAttributes();
+		ObjectMapper objectMapper = new ObjectMapper();
+		JsonNode rootNode = objectMapper.readTree(event);
+		String version = rootNode.path("payload").path("source").path("version").toString();
+		String connector = rootNode.path("payload").path("source").path("connector").toString();
+		String name = rootNode.path("payload").path("source").path("name").toString();
+		String ts_ms = rootNode.path("payload").path("source").path("ts_ms").toString();
+		String snapshot = rootNode.path("payload").path("source").path("snapshot").toString();
+		String db = rootNode.path("payload").path("source").path("db").toString();
+		String sequence = rootNode.path("payload").path("source").path("sequence").toString();
+		String table = rootNode.path("payload").path("source").path("table").toString();
+		String server_id = rootNode.path("payload").path("source").path("server_id").toString();
+		String file = rootNode.path("payload").path("source").path("file").toString();
+		String pos = rootNode.path("payload").path("source").path("pos").toString();
+		String row = rootNode.path("payload").path("source").path("row").toString();
+		String thread = rootNode.path("payload").path("source").path("thread").toString();
+		String op = rootNode.path("payload").path("op").toString();
+		String transaction = rootNode.path("payload").path("transaction").toString();
+		debeziumEventAttributes.setVersion(version);
 
-        debeziumEventAttributes.setName(name);
-        LOGGER.info("Setting name " + name);
+		debeziumEventAttributes.setConnector(connector);
+		LOGGER.debug("Setting connector " + connector);
 
-        debeziumEventAttributes.setTs_ms(ts_ms);
-        LOGGER.info("Setting ts_ms " + ts_ms);
+		debeziumEventAttributes.setName(name);
+		LOGGER.debug("Setting name " + name);
 
-        debeziumEventAttributes.setSnapshot(snapshot);
-        LOGGER.info("Setting snapshot " + snapshot);
+		debeziumEventAttributes.setTs_ms(ts_ms);
+		LOGGER.debug("Setting ts_ms " + ts_ms);
 
-        debeziumEventAttributes.setDb(db);
-        LOGGER.info("Setting db " + db);
+		debeziumEventAttributes.setSnapshot(snapshot);
+		LOGGER.debug("Setting snapshot " + snapshot);
 
-        debeziumEventAttributes.setSequence(sequence);
-        LOGGER.info("Setting sequence " + sequence);
+		debeziumEventAttributes.setDb(db);
+		LOGGER.debug("Setting db " + db);
 
-        debeziumEventAttributes.setTable(table);
-        LOGGER.info("Setting table " + table);
+		debeziumEventAttributes.setSequence(sequence);
+		LOGGER.debug("Setting sequence " + sequence);
 
-        debeziumEventAttributes.setServer_id(server_id);
-        LOGGER.info("Setting server_id " + server_id);
+		debeziumEventAttributes.setTable(table);
+		LOGGER.debug("Setting table " + table);
 
-        debeziumEventAttributes.setFile(file);
-        LOGGER.info("Setting file " + file);
+		debeziumEventAttributes.setServer_id(server_id);
+		LOGGER.debug("Setting server_id " + server_id);
 
-        debeziumEventAttributes.setPos(pos);
-        LOGGER.info("Setting pos " + pos);
+		debeziumEventAttributes.setFile(file);
+		LOGGER.debug("Setting file " + file);
 
-        debeziumEventAttributes.setRow(row);
-        LOGGER.info("Setting row " + row);
+		debeziumEventAttributes.setPos(pos);
+		LOGGER.debug("Setting pos " + pos);
 
-        debeziumEventAttributes.setThread(thread);
-        LOGGER.info("Setting thread " + thread);
+		debeziumEventAttributes.setRow(row);
+		LOGGER.debug("Setting row " + row);
 
-        debeziumEventAttributes.setOp(op);
-        LOGGER.info("Setting op " + op);
+		debeziumEventAttributes.setThread(thread);
+		LOGGER.debug("Setting thread " + thread);
 
-        debeziumEventAttributes.setTransaction(transaction);
-        LOGGER.info("Setting transaction " + transaction);
-        return debeziumEventAttributes;
-    }
+		debeziumEventAttributes.setOp(op);
+		LOGGER.debug("Setting op " + op);
+
+		debeziumEventAttributes.setTransaction(transaction);
+		LOGGER.debug("Setting transaction " + transaction);
+		return debeziumEventAttributes;
+	}
 }
